@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+body {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+#titleText {
+    font-family: 'Lato';
+    color: #005eb8;
+}
+
+/* navbar links hover */
+#nav a:hover {
+    transition: all 0.2s ease-in-out;
+    /* white by default so dim it a bit */
+    color: #d9d9d9;
+}
+
+/* our services/locations divs hover cubic-bezier effect */
+
+@media screen and (max-width: 767px) {
+    /* Example: Adjust styles for mobile devices */
+    #titleText {
+        display: none;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #nav {
+        display: none;
+    }
+
+    #mobileMenuButton {
+        display: block;
+    }
+
+    #mobileNav {
+        display: none;
+    }
+
+    /* Adjust other styles for mobile */
+}
+
+@media screen and (max-width: 1100px) {
+    /* Example: Adjust styles for mobile devices */
+    #titleText {
+        display: none;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #nav {
+        display: none;
+    }
+
+    #mobileMenuButton {
+        display: block;
+    }
+
+    #mobileNav {
+        display: none;
+    }
+
+}
+
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(0%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1100px) {
+    #mobileNav {
+        display: none;
+        background-color: #005eb8;
+        padding: 1rem;
+        opacity: 0;
+        transform: translateY(20%);
+        transition: all 0.3s ease-in-out;
+    }
+
+    #mobileNav.open {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        animation: reveal 0.3s ease-in-out;
+    }
+
+    #mobileNav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #mobileNav li {
+        margin-bottom: 1rem;
+    }
+
+    #mobileNav a {
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+}
+
+ .hidden {
+    display: none;
+}
+
+.bg-blue-900 {
+    background-color: #005eb8;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #005eb8;
+    padding: 1rem;
+    opacity: 0;
+    transform: translateY(20%);
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-nav.open {
+    opacity: 1;
+    transform: translateY(0);
+    animation: reveal 0.3s ease-in-out;
+}
+
+.mobile-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    margin-bottom: 1rem;
+}
+
+.mobile-nav a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
