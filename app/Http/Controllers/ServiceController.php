@@ -6,30 +6,35 @@ use App\Models\Categorie;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
     public function service(Request $request){
         $services = Service::with('user','category')->get();
+        $categories = Categorie::all();
 
-    return view('services', compact('services'));
+    return view('services', compact('services','categories'));
     }
-    public function store(Request $request)
-{
-    $request->validate([
-        'titre' => 'required|string|max:55',
-        'description' => 'required|string|max:555',
-    ]);
+    public function addService(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category' => 'required|exists:categories,id',
+        ]);
 
-    $user = User::create([
-        'titre' => $request->input('titre'),
-        'description' => $request->input('description'),
-        'category_id' => $request->input('category_id'),
-        'user_id' => $request->input('user_id'),
-    ]);
-    return redirect()->route('home');
-    // return response(['user' => $user, 'message' => 'Sigup successful'], 200);
-}
+        $user_id = Auth::user();
+
+        Service::create([
+            'titre' => $request->input('title'),
+            'description' => $request->input('content'),
+            'category_id' => $request->input('category'),
+            'user_id' => $user_id,
+        ]);
+
+        // $user->services()->save($service);
+
+        return redirect()->back()->with('success', 'Service added successfully.');
+    }
 }

@@ -24,6 +24,8 @@ Route::post('/login',[Controller::class, 'login'])
 // home page
 Route::get('/home',[Controller::class,'index'])
     ->name('home');
+Route::post('/addService', [ServiceController::class, 'addService'])
+    ->name('addService');
 // contact page
 Route::get('/contact',[ContactController::class, 'contact'])
     ->name('contact');

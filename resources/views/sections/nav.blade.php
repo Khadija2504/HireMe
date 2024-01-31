@@ -25,7 +25,10 @@
                     <li class="mr-6"><a href="/locations">Our locations</a></li>
                     <li class="mr-6"><a href="/team">Our team</a></li>
                     <li class="mr-6"><a href="/contact">Contact us</a></li>
-                    <li class="mr-6"><a href="">Ajouter service</a></li> {{-- as ->pop up --}}
+                    <div x-data="{ open: false }">
+                    <li class="mr-6"><a href="#" @click="open = true" class=""> Ajouter service</a></li>
+                    @include('component.services')
+                    </div>
                     <li class="mr-6"><a href="">votre services</a></li> {{-- as ->popup --}}
                     <li class="mr-6"><a href="/profile">Profile</a></li>
                 </ul>
@@ -35,15 +38,18 @@
     <div class="container mx-auto px-4 py-4">
         <button id="mobileCloseButton" class="text-white text-2xl absolute top-4 right-4 focus:outline-none">&times;</button>
         <ul class="text-white">
-            <li class="mr-6"><a href="/home">Home</a></li>
-            <li class="mr-6"><a href="/news">News</a></li>
-            <li class="mr-6"><a href="/services">Our services</a></li>
-            <li class="mr-6"><a href="/locations">Our locations</a></li>
-            <li class="mr-6"><a href="/team">Our team</a></li>
+            <li class="md-2"><a href="/home">Home</a></li>
+            <li class="md-2"><a href="/news">News</a></li>
+            <li class="md-2"><a href="/services">Our services</a></li>
+            <li class="md-2"><a href="/locations">Our locations</a></li>
+            <li class="md-2"><a href="/team">Our team</a></li>
             <li><a href="/contact">Contact us</a></li>
-            <li class="mr-6"><a href="">Ajouter service</a></li> {{-- as ->pop up --}}
-            <li class="mr-6"><a href="">votre services</a></li> {{-- as ->popup --}}
-            <li class="mr-6"><a href="/profile">Profile</a></li>
+            <div x-data="{ open: false }">
+            <li class="md-2"><a href="#" @click="open = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded>Ajouter service"></a></li>
+            {{-- @yield('popup') --}}
+            </div>
+            <li class="md-2"><a href="">votre services</a></li> {{-- as ->popup --}}
+            <li class="md-2"><a href="/profile">Profile</a></li>
         </ul>
     </div>
 </nav>
