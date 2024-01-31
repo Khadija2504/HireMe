@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -14,22 +15,6 @@ use App\Models\User;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function register(Request $request)
-    {
-        $request->validate([
-            'nom' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-
-        $user = User::create([
-            'nom' => $request->nom,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response(['user' => $user, 'message' => 'Registration successful'], 201);
-    }
 
     public function login(Request $request)
     {
@@ -41,16 +26,20 @@ class Controller extends BaseController
         if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return response(['message' => 'Invalid credentials'], 401);
         }
-
+        if (Auth::check()) {
+            session(['user_id' => Auth::id()]);
+        }
+        $user_id = session('user_id');
+        // dd($user_id);
         $user = $request->user();
         return redirect()->route('home');
-        // return response(['user' => $user, 'message' => 'Login successful'], 200);
     }
     public function create(){
         return view('sign');
     }
     public function store(Request $request)
 {
+    // dd($request);
     $request->validate([
         'Nom' => 'required|string|max:255',
         'Prenom' => 'required|string|max:255',
@@ -68,27 +57,34 @@ class Controller extends BaseController
         'email' => $request->input('email'),
         'password' => Hash::make($request->input('password')),
     ]);
-    return redirect()->route('home');
-    // return response(['user' => $user, 'message' => 'Sigup successful'], 200);
+    return redirect()->route('create');
 }
 public function index(){
-    // dd(user::all());
-    return view('home');
+    
+    $user_id = session('user_id');
+    $categories = Categorie::all();
+    // dd($user_id);
+    return view('home',compact('categories'));
 }
 public function contact(){
-    return view('contact');
+    $categories = Categorie::all();
+    return view('contact',compact('categories'));
 }
 public function location(){
-    return view('locations');
+    $categories = Categorie::all();
+    return view('locations',compact('categories'));
 }
 public function news(){
-    return view('news');
+    $categories = Categorie::all();
+    return view('news',compact('categories'));
 }
 public function profile(){
-    return view('profile');
+    $categories = Categorie::all();
+    return view('profile',compact('categories'));
 }
 public function team(){
-    return view('team');
+    $categories = Categorie::all();
+    return view('team',compact('categories'));
 }
 
 }

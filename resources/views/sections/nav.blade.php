@@ -5,7 +5,7 @@
                 <img src="https://mcrplasticsurgeryandburns.co.uk/cfpsb.jpg" alt="Manchester University NHS Foundation Trust" id="logo" class="h-16">
             </div>
             <div>
-                <h1 class="text-4xl font-bold" id="titleText">The Manchester Centre for Plastic Surgery and Burns</h1>
+                <h1 class="text-4xl font-bold" id="titleText">Plateforme de Services Locaux</h1>
             </div>
             <button id="mobileMenuButton" class="mobile-nav-toggle text-blue-900 focus:outline-none md:hidden">
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -29,7 +29,7 @@
                     <li class="mr-6"><a href="#" @click="open = true" class=""> Ajouter service</a></li>
                     @include('component.services')
                     </div>
-                    <li class="mr-6"><a href="">votre services</a></li> {{-- as ->popup --}}
+                    <li class="mr-6"><a href="/myService">votre services</a></li> {{-- as ->popup --}}
                     <li class="mr-6"><a href="/profile">Profile</a></li>
                 </ul>
             </div>

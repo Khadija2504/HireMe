@@ -24,8 +24,19 @@ Route::post('/login',[Controller::class, 'login'])
 // home page
 Route::get('/home',[Controller::class,'index'])
     ->name('home');
-Route::post('/addService', [ServiceController::class, 'addService'])
+Route::post('/addService', [ServiceController::class, 'store'])
     ->name('addService');
+// My services
+Route::get('/myService',[ServiceController::class,'myService'])
+    ->name('myService');
+// delete
+Route::delete('/delete/{id}', [ServiceController::class, 'destroy'])
+    ->name('delete');
+// modify the service
+Route::get('/modify/{id}', [ServiceController::class,'modify'])
+    ->name('modify');
+Route::put('/update', [ServiceController::class, 'update'])
+    ->name('update');
 // contact page
 Route::get('/contact',[ContactController::class, 'contact'])
     ->name('contact');

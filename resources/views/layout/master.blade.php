@@ -33,7 +33,8 @@
     <link rel="apple-touch-icon" href="https://mcrplasticsurgeryandburns.co.uk/cfpsb.png" sizes="180x180">
     <link rel="mask-icon" href="https://mcrplasticsurgeryandburns.co.uk/cfpsb.png" color="#005eb8">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="stylesheet" type="text/css" href="path/to/compiled/styles.css">
+
 </head>
 @include('sections.nav')
 <main>

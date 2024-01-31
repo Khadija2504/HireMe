@@ -15,6 +15,21 @@
                     Updated at : {{$service->updated_at}} <br>
                     Category: {{ $service->category->category_name }}
                 </p>
+                <div>
+                    <form action="{{route('delete',$service->id)}}" method="POST">
+                        @method("DELETE")
+                        @csrf
+                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                            Delete
+                        </button>
+                    </form>
+                    <form action="{{route('modify',$service->id)}}" method="GET">
+                        
+                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                            Modify
+                        </button>
+                    </form>
+                </div>
             </li>
             @endforeach
         </ul>

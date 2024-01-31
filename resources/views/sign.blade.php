@@ -26,7 +26,7 @@
 
             <input type="password" name="password" placeholder="Mot de passe" required>
 
-            <button type="submit" name="register">S'inscrire</button>
+            <button type="submit" name="store">S'inscrire</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
