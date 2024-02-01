@@ -14,13 +14,15 @@ class ServiceController extends Controller
         // $userId = session('user_id');
         $services = Service::with('user', 'category')->get();
         $categories = Categorie::all();
+        // dd($categories);
     return view('services', compact('services','categories'));
     }
 
     public function myService(Request $request){
         $userId = session('user_id');
-        $services = Service::where('user_id', $userId)->with('user', 'category')->get();
+        $services = Service::where('user_id', $userId)->with('category','user')->get();
         $categories = Categorie::all();
+        dd($services);
     return view('myService', compact('services','categories'));
     }
     public function modify($id){
@@ -31,21 +33,24 @@ class ServiceController extends Controller
         $categorie = Categorie::find($id);
         return view('modifyService',compact('service','services','categories','categorie'));
     }
-    public function update(Request $request,int $id)
+    public function update(Request $request)
 {
-    
-        $titre = request()->titre;
-        $categories = request()->categories;
-        $description = request()->description;
-        $user = session('user_id');
+    $userId = session('user_id');
+    $service = Service::find($userId);
 
-        $service = Service::find($id);
-        $service->titre = $titre;
-        $service->category_id = $categories;
-        $service->description = $description;
-        $service->user_id = $user;
-        $service->save();
-        return redirect()->route('myService');
+    if (!$service) {
+        return abort(404);
+    }
+
+    $serviceData = $request->input('service', []);
+
+    $service->titre = $serviceData['titre'] ?? $request->input('titre');
+    $service->description = $serviceData['description'] ?? $request->input('description');
+    $service->category_id = $serviceData['category_id'] ?? $request->input('category_id');
+
+    $service->save();
+    $service->update($serviceData);
+    return redirect()->route('myService');
 }
 
     public function store(Request $request)

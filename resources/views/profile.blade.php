@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('main')
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" style="width: 50%; margin-left: 25%;">
                 <div class="form-container sign-up-container">
                     <h2 class="text-xl font-bold mb-4"> Control your informations profile </h2>
                     
@@ -36,7 +36,7 @@
                             
                             <div class="col-span-2">
                                 <label for="" class="block mb-2 text-sm font-medium text-gray-900 text-black">Password</label>
-                                <input name="password" value="{{$user->password}}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500" placeholder="Write service description here, and add the price as well">
+                                <input type="password" name="password" value="{{$user->password}}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500" placeholder="Write service description here, and add the price as well">
                             </div>
 
                         </div>

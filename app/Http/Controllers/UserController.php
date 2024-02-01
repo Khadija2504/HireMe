@@ -106,15 +106,16 @@ public function updateProfile(Request $request)
 
     $userData = $request->input('user', []);
 
-    $user->Nom = $userData['Nom'] ?? $user->Nom;
-    $user->Prenom = $userData['Prenom'] ?? $user->Prenom;
-    $user->Phone = $userData['Phone'] ?? $user->Phone;
-    $user->age = $userData['age'] ?? $user->age;
-    $user->email = $userData['email'] ?? $user->email;
-    $user->password = $userData['password'] ?? $user->password;
+    $user->Nom = $userData['Nom'] ?? $request->input('Nom');
+    $user->Prenom = $userData['Prenom'] ?? $request->input('Prenom');
+    $user->Phone = $userData['Phone'] ?? $request->input('Phone');
+    $user->age = $userData['age'] ?? $request->input('age');
+    $user->email = $userData['email'] ?? $request->input('email');
+    $user->password = $userData['password'] ?? $request->input('password');
 
     $user->save();
-    dd($user);
+    $user->update($userData);
+    // dd($userData);
 
     return redirect()->back();
 }

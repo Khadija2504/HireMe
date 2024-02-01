@@ -24,7 +24,6 @@
                     <li class="mr-6"><a href="/services">Our services</a></li>
                     <li class="mr-6"><a href="/locations">Our locations</a></li>
                     <li class="mr-6"><a href="/team">Our team</a></li>
-                    <li class="mr-6"><a href="/contact">Contact us</a></li>
                     <div x-data="{ open: false }">
                     <li class="mr-6"><a href="#" @click="open = true" class=""> Ajouter service</a></li>
                     @include('component.services')

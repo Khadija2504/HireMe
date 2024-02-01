@@ -17,14 +17,14 @@ use App\Http\Controllers\UserController;
 |
 */
 // sign page
-Route::get('/create',[Controller::class, 'create'])
+Route::get('/create',[UserController::class, 'create'])
     ->name('create');
-Route::post('/store',[Controller::class, 'store'])
+Route::post('/store',[UserController::class, 'store'])
     ->name('store');
-Route::post('/login',[Controller::class, 'login'])
+Route::post('/login',[UserController::class, 'login'])
     ->name('login');
 // home page
-Route::get('/home',[Controller::class,'index'])
+Route::get('/home',[UserController::class,'index'])
     ->name('home');
 Route::post('/addService', [ServiceController::class, 'store'])
     ->name('addService');
@@ -45,13 +45,18 @@ Route::get('/modifyProfile', [UserController::class,'modifyProfile'])
 Route::put('/updateProfile', [UserController::class, 'updateProfile'])
     ->name('updateProfile');
 // contact page
-Route::get('/contact',[ContactController::class, 'contact'])
+Route::get('/contact/{id}',[ContactController::class, 'contact'])
     ->name('contact');
+// add msg page
+Route::get('/addMsg/{id}',[ContactController::class, 'addMsg'])
+    ->name('addMsg');
+Route::post('/storeMsg',[ContactController::class, 'storeMsg'])
+    ->name('storeMsg'); 
 // location page
-Route::get('/locations',[Controller::class, 'location'])
+Route::get('/locations',[UserController::class, 'location'])
     ->name('locations');
 // news page
-Route::get('/news',[Controller::class, 'news'])
+Route::get('/news',[UserController::class, 'news'])
     ->name('news');
 // news page
 // Route::get('/profile',[Controller::class, 'profile'])
@@ -60,5 +65,5 @@ Route::get('/news',[Controller::class, 'news'])
 Route::get('/services',[ServiceController::class, 'service'])
     ->name('services');
 // team page
-Route::get('/team',[Controller::class, 'team'])
+Route::get('/team',[UserController::class, 'team'])
     ->name('team');

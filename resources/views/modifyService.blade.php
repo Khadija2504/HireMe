@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('main')
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" style="width: 50%; margin-left: 25%;">
                 <div class="form-container sign-up-container">
                     <h2 class="text-xl font-bold mb-4"> Modify this service </h2>
                     
@@ -16,8 +16,8 @@
 
                             <div class="col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 text-black">Categorie</label>
-                                <select id="category" name="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">
-                                    <option value="{{$service->category_id}}">{{$categorie->category_name}}</option>
+                                <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">
+                                    <option value="{{$service->category_id}}">{{$service->category_id}}</option>
                                     @foreach ($categories as $category)
                                         <option value="{{$category->category_id}}">{{$category->category_name}}</option>
                                     @endforeach

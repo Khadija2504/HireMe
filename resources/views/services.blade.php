@@ -13,8 +13,13 @@
                     By : {{$service->user->Nom}} {{$service->user->Prenom}} <br>
                     Create at : {{$service->created_at}} <br>
                     Updated at : {{$service->updated_at}} <br>
-                    Category: {{ $service->categorie->category_name}}
+                    {{-- Category: {{ $service->categorie->category_name}} --}}
                 </p>
+                <form action="{{route('contact',$service->id)}}" method="GET">
+                    <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                        Ask anything
+                    </button>
+                </form>
             </li>
             @endforeach
         </ul>
