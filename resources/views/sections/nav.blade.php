@@ -30,7 +30,7 @@
                     @include('component.services')
                     </div>
                     <li class="mr-6"><a href="/myService">votre services</a></li> {{-- as ->popup --}}
-                    <li class="mr-6"><a href="/profile">Profile</a></li>
+                    <li class="mr-6"><a href="/modifyProfile">Profile</a></li>
                 </ul>
             </div>
         </nav>

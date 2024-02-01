@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class ServiceController extends Controller
 {
     public function service(Request $request){
-        $userId = session('user_id');
-        $services = Service::where('user_id', $userId)->with('user', 'category')->get();
+        // $userId = session('user_id');
+        $services = Service::with('user', 'category')->get();
         $categories = Categorie::all();
     return view('services', compact('services','categories'));
     }
@@ -33,62 +33,37 @@ class ServiceController extends Controller
     }
     public function update(Request $request,int $id)
 {
-    // Validate the request data
-    $formFields = $request->validate([
-        'titre' => 'required|string|max:255',
-        'description' => 'required|string',
-        'category_id' => 'required|exists:categories,category_id',
-    ]);
+    
+        $titre = request()->titre;
+        $categories = request()->categories;
+        $description = request()->description;
+        $user = session('user_id');
 
-    $service = Service::find($id);
-    $service->titre = $formFields['titre'];
-    $service->description = $formFields['description'];
-    $service->category_id = $formFields['category_id'];
-    $service->save();
-
-    return redirect()->route('myService');
+        $service = Service::find($id);
+        $service->titre = $titre;
+        $service->category_id = $categories;
+        $service->description = $description;
+        $service->user_id = $user;
+        $service->save();
+        return redirect()->route('myService');
 }
 
-    // public function store(Request $request)
-    // {
-    //     // dd($request);
-    //     $request->validate([
-    //         'titre' => 'required|string|max:255',
-    //         'description' => 'required|string:1000',
-    //         'category_id' => 'required|exists:categories,category_id',
-    //     ]);
-    
-    //     // $user = Auth::user();
-    //     $service = new Service([
-    //         'titre' => $request->input('titre'),
-    //         'description' => $request->input('description'),
-    //         'category_id' => $request->input('category_id'),
-    //     ]);
-    //     // $user->services()->save($service);
-    
-    //     return redirect()->route('home');
-    // }
     public function store(Request $request)
     {
-        $request->validate([
-            'titre' => 'required|string|max:255',
-            'description' => 'required|string',
-            'category_id' => 'required|exists:categories,category_id',
-        ]);
-        // dd($data);
-
+    $titre = request()->titre;
+    $categories = request()->categories;
+    $description = request()->description;
+    $user = session('user_id');
         // $user = Auth::user();
-        $user = new User();
-        $service = new Service([
-            'titre' => $request->input('titre'),
-            'description' => $request->input('description'),
-            'category_id' => $request->input('category_id'),
-        ]);
-
-        $user->service()->save($service);
-        return redirect()->route('home');
-
+        $service = new Service;
+        $service->titre = $titre;
+        $service->category_id = $categories;
+        $service->description = $description;
+        $service->user_id = $user;
+        $service->save();
+        return redirect()->back();
     }
+    
     public function destroy(Request $request){
         $service = Service::find($request->id);
         $service->delete();

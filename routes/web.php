@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,19 +39,24 @@ Route::get('/modify/{id}', [ServiceController::class,'modify'])
     ->name('modify');
 Route::put('/update', [ServiceController::class, 'update'])
     ->name('update');
+// modify profile
+Route::get('/modifyProfile', [UserController::class,'modifyProfile'])
+    ->name('modifyProfile');
+Route::put('/updateProfile', [UserController::class, 'updateProfile'])
+    ->name('updateProfile');
 // contact page
 Route::get('/contact',[ContactController::class, 'contact'])
     ->name('contact');
-// profile page
+// location page
 Route::get('/locations',[Controller::class, 'location'])
     ->name('locations');
-// service page
+// news page
 Route::get('/news',[Controller::class, 'news'])
     ->name('news');
 // news page
-Route::get('/profile',[Controller::class, 'profile'])
-    ->name('profile');
-// locations page
+// Route::get('/profile',[Controller::class, 'profile'])
+//     ->name('profile');
+// services page
 Route::get('/services',[ServiceController::class, 'service'])
     ->name('services');
 // team page

@@ -13,7 +13,7 @@
                     By : {{$service->user->Nom}} {{$service->user->Prenom}} <br>
                     Create at : {{$service->created_at}} <br>
                     Updated at : {{$service->updated_at}} <br>
-                    Category: {{ $service->category->category_name }}
+                    Category: {{ $service->categorie->category_name}}
                 </p>
             </li>
             @endforeach
