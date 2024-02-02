@@ -15,12 +15,7 @@
 
                             <div class="col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 text-black">Categorie</label>
-                                <select id="category" name="service[category_id]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">
-{{-- <select id="category" name="service[category_id]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">                                   
-                                    <option value=1>Technology</option>
-                                    <option value=2 >Healthcare</option>
-                                    <option value=3 >Education</option>
-                                </select> --}}                                   
+                                <select id="category" name="service[category_id]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">                        
                                  @foreach ($categories as $categorie)
                                         <option value="{{$categorie->id}}" {{($service->category_id == $categorie->id) ? 'selected' : ''}}>
                                             {{$categorie->category_name}}</option>

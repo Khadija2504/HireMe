@@ -10,18 +10,24 @@ use App\Models\Service;
 class ContactController extends Controller
 {
     public function contact($id) {
+        $userId = session('user_id');
+        if(!isset($userId)){
+            return redirect()->route('create');
+        }
         $service = Service::with('user', 'categorie')->find($id);
         $categories = Categorie::all();
-        $userId = session('user_id');
         $contact = Contact::where('service_id', $id)
             ->orderBy('created_at', 'desc')->get();
     
         return view('contact', compact('service', 'categories', 'contact'));
     }
     public function addMsg(Request $request, $id){
+        $userId = session('user_id');
+        if(!isset($userId)){
+            return redirect()->route('create');
+        }
         $service = Service::find($id);
         $categories = Categorie::all();
-        // $userId = session('user_id');
         return view('addMsg',compact('categories','service','id'));
     }
     public function storeMsg(Request $request){

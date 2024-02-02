@@ -61,27 +61,48 @@ class UserController extends Controller
 public function index(){
     
     $user_id = session('user_id');
+    if(!isset($user_id)){
+        return redirect()->route('create');
+    }
     $categories = Categorie::all();
     // dd($user_id);
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     return view('home',compact('categories'));
 }
 public function contact(){
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     $categories = Categorie::all();
     return view('contact',compact('categories'));
 }
 public function location(){
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     $categories = Categorie::all();
     return view('locations',compact('categories'));
 }
 public function news(){
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     $categories = Categorie::all();
     return view('news',compact('categories'));
 }
 public function profile(){
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     $categories = Categorie::all();
     return view('profile',compact('categories'));
 }
 public function team(){
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     $categories = Categorie::all();
     return view('team',compact('categories'));
 }

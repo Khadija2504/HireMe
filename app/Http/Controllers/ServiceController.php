@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class ServiceController extends Controller
 {
     public function service(Request $request){
-        // $userId = session('user_id');
+        $userId = session('user_id');
+        if(!isset($userId)){
+            return redirect()->route('create');
+        }
         $services = Service::with('user', 'categorie')
             ->orderBy('updated_at', 'desc')->get();
         $categories = Categorie::all();
@@ -21,6 +24,9 @@ class ServiceController extends Controller
 
     public function myService(Request $request){
         $userId = session('user_id');
+        if(!isset($userId)){
+            return redirect()->route('create');
+        }
         $services = Service::where('user_id', $userId)->with('categorie','user')
             ->orderBy('updated_at', 'desc')->get();
         $categories = Categorie::all();
@@ -29,6 +35,9 @@ class ServiceController extends Controller
     }
     public function modify($id){
         $userId = session('user_id');
+        if(!isset($userId)){
+            return redirect()->route('create');
+        }
         $service = Service::with('user', 'categorie')->find($id);
         $services = Service::where('user_id', $userId)->with('user', 'categorie')
             ->orderBy('created_at', 'desc')->get();
