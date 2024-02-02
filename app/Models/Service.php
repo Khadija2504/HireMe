@@ -24,10 +24,6 @@ class Service extends Model
     {
         return $this->belongsTo(Categorie::class, 'category_id');
     }
-    // public function services(): HasMany
-    // {
-    //     return $this->hasMany(Service::class);
-    // }
 
     use HasFactory;
 }
