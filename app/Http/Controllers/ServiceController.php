@@ -28,36 +28,38 @@ class ServiceController extends Controller
     return view('myService', compact('services','categories'));
     }
     public function modify($id){
-        $service = Service::find($id);
         $userId = session('user_id');
+        $service = Service::with('user', 'categorie')->find($id);
         $services = Service::where('user_id', $userId)->with('user', 'categorie')
             ->orderBy('created_at', 'desc')->get();
         $categories = Categorie::all();
         $categorie = Categorie::find($id);
-        return view('modifyService',compact('service','services','categories','categorie'));
+        return view('modifyService', compact('services', 'categories', 'categorie', 'service'));
     }
-    public function update(Request $request)
+    
+    public function update(Request $request, $id)
 {
     $userId = session('user_id');
-    $service = Service::find($userId);
+    $service = Service::where('user_id', $userId)->find($id);
 
     if (!$service) {
         return abort(404);
     }
 
     $serviceData = $request->input('service', []);
-        $service->titre = $serviceData['titre'] ?? $request->input('titre');
-        $service->description = $serviceData['description'] ?? $request->input('description');
-        $service->price = $serviceData['price']?? $request->input('price');
-        $service->category_id = $serviceData['category_id'] ?? $request->input('category_id');
-        $service->save();
-        $service->update($serviceData);
-        // dd($service);
 
-        return redirect()->route('myService');
+    $service->titre = $serviceData['titre'] ?? $request->input('titre');
+    $service->description = $serviceData['description'] ?? $request->input('description');
+    $service->price = $serviceData['price'] ?? $request->input('price');
+    $service->category_id = $serviceData['category_id'] ?? $request->select('category_id');
     
+    $service->save();
+    // dd($serviceData['category_id']);
+
+    return redirect()->route('myService');
 }
 
+    
     public function store(Request $request)
     {
     $titre = request()->titre;
@@ -79,6 +81,6 @@ class ServiceController extends Controller
     public function destroy(Request $request){
         $service = Service::find($request->id);
         $service->delete();
-        return redirect()->route('home');
+        return redirect()->back();
     }
 }

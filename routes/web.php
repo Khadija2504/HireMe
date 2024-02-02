@@ -40,7 +40,7 @@ Route::delete('/delete/{id}', [ServiceController::class, 'destroy'])
 // modify the service
 Route::get('/modify/{id}', [ServiceController::class,'modify'])
     ->name('modify');
-Route::put('/update', [ServiceController::class, 'update'])
+Route::post('/update/{id}', [ServiceController::class, 'update'])
     ->name('update');
 // modify profile
 Route::get('/modifyProfile', [UserController::class,'modifyProfile'])

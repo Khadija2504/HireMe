@@ -6,7 +6,6 @@
                     
                     <form class="p-4 md:p-5" action="{{ route('update', ['id' => $service->id]) }}" method="post">
                             @csrf
-                            @method('PUT')
                         <div class="grid gap-4 mb-4 grid-cols-2">
 
                             <div class="col-span-2">
@@ -17,10 +16,15 @@
                             <div class="col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 text-black">Categorie</label>
                                 <select id="category" name="service[category_id]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">
-                                    {{-- <option value="{{$service->category_id}}">{{$service->category_name}}</option> --}}
-                                    @foreach ($categories as $category)
-                                    <option value="{{$service->category_id}}" {{($service->category_id == $category->id) ? 'selected' : ''}}>{{$category->category_name}}</option>
-                                    @endforeach
+{{-- <select id="category" name="service[category_id]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">                                   
+                                    <option value=1>Technology</option>
+                                    <option value=2 >Healthcare</option>
+                                    <option value=3 >Education</option>
+                                </select> --}}                                   
+                                 @foreach ($categories as $categorie)
+                                        <option value="{{$categorie->id}}" {{($service->category_id == $categorie->id) ? 'selected' : ''}}>
+                                            {{$categorie->category_name}}</option>
+                                 @endforeach
                                 </select>
                             </div>
                             
