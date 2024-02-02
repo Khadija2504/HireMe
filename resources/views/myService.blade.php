@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('main')
+{{-- {{dd($services)}} --}}
 <main class="container mx-auto px-4 py-8">
     <section id="content" class="bg-white shadow-md rounded-lg p-6 shadow-md">
         <h2 class="text-3xl font-bold mb-4">Our services</h2>
@@ -8,28 +9,28 @@
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @foreach ($services as $service)
             <li class="bg-gray-100 text-blue-900 rounded-lg p-6 shadow-md">
-                <h3 class="text-xl font-bold mb-4">{{$service->titre}}</h3>
-                <p class="text-gray-700 mb-4">{{$service->description}} <br>
-                    By : {{$service->user->Nom}} {{$service->user->Prenom}} <br>
+                <h3 class="text-xl font-bold mb-4"> {{$service->titre}} <strong style="margin-left: 20%;">{{$service->price}}$</strong></h3>
+                <p class="text-gray-700 mb-4">{{$service->description}}<br>
+                    By : {{$service->user->Nom}} {{$service->user->Prenom}}<br>
                     Create at : {{$service->created_at}} <br>
                     Updated at : {{$service->updated_at}} <br>
-                    Category: {{ $service->category->category_name }}
+                    Category: {{($service->categorie)->category_name }}
                 </p>
-                <div>
-                    <form action="{{route('delete',$service->id)}}" method="POST">
+                <div class="mt-8">
+                    <form class="inline" action="{{route('delete',$service->id)}}" method="POST">
                         @method("DELETE")
                         @csrf
-                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300 mb-8">
                             Delete
                         </button>
                     </form>
-                    <form action="{{route('modify',$service->id)}}" method="GET">
+                    <form class="inline" action="{{route('modify',$service->id)}}" method="GET">
                         
-                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300 mb-8">
                             Modify
                         </button>
                     </form>
-                    <form action="{{route('contact',$service->id)}}" method="GET">
+                    <form class="inline" action="{{route('contact',$service->id)}}" method="GET">
                         <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
                             Ask anything
                         </button>

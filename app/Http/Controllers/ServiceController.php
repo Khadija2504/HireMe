@@ -12,23 +12,26 @@ class ServiceController extends Controller
 {
     public function service(Request $request){
         // $userId = session('user_id');
-        $services = Service::with('user', 'category')->get();
+        $services = Service::with('user', 'categorie')
+            ->orderBy('updated_at', 'desc')->get();
         $categories = Categorie::all();
-        // dd($categories);
+        // dd(($services));
     return view('services', compact('services','categories'));
     }
 
     public function myService(Request $request){
         $userId = session('user_id');
-        $services = Service::where('user_id', $userId)->with('category','user')->get();
+        $services = Service::where('user_id', $userId)->with('categorie','user')
+            ->orderBy('updated_at', 'desc')->get();
         $categories = Categorie::all();
-        dd($services);
+        // dd($services->services);
     return view('myService', compact('services','categories'));
     }
     public function modify($id){
         $service = Service::find($id);
         $userId = session('user_id');
-        $services = Service::where('user_id', $userId)->with('user', 'category')->get();
+        $services = Service::where('user_id', $userId)->with('user', 'categorie')
+            ->orderBy('created_at', 'desc')->get();
         $categories = Categorie::all();
         $categorie = Categorie::find($id);
         return view('modifyService',compact('service','services','categories','categorie'));
@@ -43,14 +46,16 @@ class ServiceController extends Controller
     }
 
     $serviceData = $request->input('service', []);
+        $service->titre = $serviceData['titre'] ?? $request->input('titre');
+        $service->description = $serviceData['description'] ?? $request->input('description');
+        $service->price = $serviceData['price']?? $request->input('price');
+        $service->category_id = $serviceData['category_id'] ?? $request->input('category_id');
+        $service->save();
+        $service->update($serviceData);
+        // dd($service);
 
-    $service->titre = $serviceData['titre'] ?? $request->input('titre');
-    $service->description = $serviceData['description'] ?? $request->input('description');
-    $service->category_id = $serviceData['category_id'] ?? $request->input('category_id');
-
-    $service->save();
-    $service->update($serviceData);
-    return redirect()->route('myService');
+        return redirect()->route('myService');
+    
 }
 
     public function store(Request $request)
@@ -58,12 +63,14 @@ class ServiceController extends Controller
     $titre = request()->titre;
     $categories = request()->categories;
     $description = request()->description;
+    $price = request()->price;
     $user = session('user_id');
         // $user = Auth::user();
         $service = new Service;
         $service->titre = $titre;
         $service->category_id = $categories;
         $service->description = $description;
+        $service->price = $price;
         $service->user_id = $user;
         $service->save();
         return redirect()->back();

@@ -7,12 +7,12 @@
         <h3>UHSM — Wythenshawe and Withington Community</h3>
 
             <li class="bg-gray-100 text-blue-900 rounded-lg p-6 shadow-md">
-                <h3 class="text-xl font-bold mb-4">{{$service->titre}}</h3>
+                <h3 class="text-xl font-bold mb-4">{{$service->titre}} <strong style="margin-left: 20%;">{{$service->price}}$</strong></h3>
                 <p class="text-gray-700 mb-4">{{$service->description}} <br>
                     By : {{$service->user->Nom}} {{$service->user->Prenom}} <br>
                     Create at : {{$service->created_at}} <br>
                     Updated at : {{$service->updated_at}} <br>
-                    {{-- Category: {{ $service->categorie->category_name}} --}}
+                    Category: {{ $service->categorie->category_name}}
                 </p>
             </li>
             <form action="{{route('addMsg',$service->id)}}" method="GET">

@@ -23,6 +23,9 @@ Route::post('/store',[UserController::class, 'store'])
     ->name('store');
 Route::post('/login',[UserController::class, 'login'])
     ->name('login');
+// logout
+Route::get('/logout',[UserController::class, 'logout'])
+    ->name('logout');
 // home page
 Route::get('/home',[UserController::class,'index'])
     ->name('home');

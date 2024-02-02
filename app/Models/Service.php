@@ -12,6 +12,7 @@ class Service extends Model
     protected $fillable = [
         'titre',
         'description',
+        'price',
         'user_id',
         'category_id',
     ];
@@ -19,9 +20,9 @@ class Service extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function category()
+    public function categorie()
     {
-        return $this->belongsTo(Categorie::class, 'id');
+        return $this->belongsTo(Categorie::class, 'category_id');
     }
     // public function services(): HasMany
     // {

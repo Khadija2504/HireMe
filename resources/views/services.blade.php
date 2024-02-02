@@ -8,18 +8,21 @@
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @foreach ($services as $service)
             <li class="bg-gray-100 text-blue-900 rounded-lg p-6 shadow-md">
-                <h3 class="text-xl font-bold mb-4">{{$service->titre}}</h3>
+                <h3 class="text-xl font-bold mb-4">{{$service->titre}} <strong style="margin-left: 20%;">{{$service->price}}$</strong></h3>
                 <p class="text-gray-700 mb-4">{{$service->description}} <br>
-                    By : {{$service->user->Nom}} {{$service->user->Prenom}} <br>
+                    By : {{$service->user->Nom}} {{$service->user->Prenom}}<br>
                     Create at : {{$service->created_at}} <br>
                     Updated at : {{$service->updated_at}} <br>
-                    {{-- Category: {{ $service->categorie->category_name}} --}}
+                    Category: {{ $service->categorie->category_name}}
                 </p>
-                <form action="{{route('contact',$service->id)}}" method="GET">
-                    <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
-                        Ask anything
-                    </button>
-                </form>
+                <div class="mt-8">
+                    <form class="inline" action="{{route('contact',$service->id)}}" method="GET">
+                        <button class="inline-block px-6 py-3 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300">
+                            Ask anything
+                        </button>
+                    </form>
+                </div>
+                
             </li>
             @endforeach
         </ul>

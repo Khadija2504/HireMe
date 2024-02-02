@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Service;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -87,11 +88,14 @@ public function team(){
 
 public function modifyProfile(){
     $userId = session('user_id');
+    if(!isset($userId)){
+        return redirect()->route('create');
+    }
     // dd($userId);
     $users = User::where('id', $userId)->get();
     $user = User::find($userId);
     // dd($user);
-    $services = Service::where('user_id', $userId)->with('user', 'category')->get();
+    $services = Service::where('user_id', $userId)->with('user', 'categorie')->get();
     $categories = Categorie::all();
     return view('profile',compact('users','user','services','categories'));
 }
@@ -119,6 +123,11 @@ public function updateProfile(Request $request)
 
     return redirect()->back();
 }
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        return redirect()->route('create');
+    }
 
 
 }

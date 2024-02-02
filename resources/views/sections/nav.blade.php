@@ -2,7 +2,7 @@
     <header class="bg-white">
         <div id="thing" class="container mx-auto px-4 py-4 flex items-center">
             <div>
-                <img src="https://mcrplasticsurgeryandburns.co.uk/cfpsb.jpg" alt="Manchester University NHS Foundation Trust" id="logo" class="h-16">
+                <img src="../../imgs/hmLogoLarge.png" alt="Manchester University NHS Foundation Trust" id="logo" class="h-16">
             </div>
             <div>
                 <h1 class="text-4xl font-bold" id="titleText">Plateforme de Services Locaux</h1>
@@ -30,6 +30,7 @@
                     </div>
                     <li class="mr-6"><a href="/myService">votre services</a></li> {{-- as ->popup --}}
                     <li class="mr-6"><a href="/modifyProfile">Profile</a></li>
+                    <li class="mr-6"><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </nav>

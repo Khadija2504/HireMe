@@ -9,16 +9,14 @@ use App\Models\Service;
 
 class ContactController extends Controller
 {
-    public function contact($id){
-        // $services = Service::with('user', 'category')->get();
+    public function contact($id) {
+        $service = Service::with('user', 'categorie')->find($id);
         $categories = Categorie::all();
-        $service = Service::find($id);
         $userId = session('user_id');
-        $categorie = Categorie::find($id);
-        $service_id = $id;
-        $contact = Contact::all();
-        // dd($contact);
-        return view('contact',compact('service','categories','categorie','contact'));
+        $contact = Contact::where('service_id', $id)
+            ->orderBy('created_at', 'desc')->get();
+    
+        return view('contact', compact('service', 'categories', 'contact'));
     }
     public function addMsg(Request $request, $id){
         $service = Service::find($id);

@@ -11,22 +11,27 @@
 
                             <div class="col-span-2">
                                 <label for="" class="block mb-2 text-sm font-medium text-gray-900 text-black">Title</label>
-                                <input type="text" name="titre" id="" value="{{$service->titre}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500" placeholder="service title" required="">
+                                <input type="text" name="service[titre]" id="" value="{{$service->titre}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500" placeholder="service title" required="">
                             </div>
 
                             <div class="col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900 text-black">Categorie</label>
-                                <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">
-                                    <option value="{{$service->category_id}}">{{$service->category_id}}</option>
+                                <select id="category" name="service[category_id]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-primary-500 focus:border-primary-500">
+                                    {{-- <option value="{{$service->category_id}}">{{$service->category_name}}</option> --}}
                                     @foreach ($categories as $category)
-                                        <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                                    <option value="{{$service->category_id}}" {{($service->category_id == $category->id) ? 'selected' : ''}}>{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             
                             <div class="col-span-2">
                                 <label for="" class="block mb-2 text-sm font-medium text-gray-900 text-black">Description</label>
-                                <input name="description" value="{{$service->description}}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500" placeholder="Write service description here, and add the price as well">
+                                <input name="service[description]" value="{{$service->description}}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500" placeholder="Write service description here, and add the price as well">
+                            </div>
+
+                            <div class="col-span-2">
+                                <label for="" class="block mb-2 text-sm font-medium text-gray-900 text-black">Price</label>
+                                <input name="service[price]" value="{{$service->price}}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-100 border-gray-500 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500" placeholder="Write service description here, and add the price as well">
                             </div>
 
                         </div>
